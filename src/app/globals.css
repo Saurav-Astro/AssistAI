@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 98%;
+    --foreground: 220 40% 10%;
+    --card: 220 20% 100%;
+    --card-foreground: 220 40% 10%;
+    --popover: 220 20% 100%;
+    --popover-foreground: 220 40% 10%;
+    --primary: 210 90% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 220 40% 10%;
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 15% 45%;
+    --accent: 30 95% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 210 90% 50%;
+    --radius: 0.8rem;
+  }
+  .dark {
+    --background: 220 40% 2%;
+    --foreground: 220 15% 98%;
+    --card: 220 40% 5%;
+    --card-foreground: 220 15% 98%;
+    --popover: 220 40% 2%;
+    --popover-foreground: 220 15% 98%;
+    --primary: 210 90% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 220 15% 98%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 220 15% 65%;
+    --accent: 30 95% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 210 90% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  .font-size-sm {
+    font-size: 14px;
+  }
+  .font-size-md {
+    font-size: 16px;
+  }
+  .font-size-lg {
+    font-size: 18px;
+  }
+  .font-size-xl {
+    font-size: 20px;
+  }
+}
+
+@layer utilities {
+  .skip-link {
+    position: absolute;
+    top: -4rem;
+    left: 0.5rem;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 0.5rem 1rem;
+    z-index: 100;
+    transition: top 0.3s ease-in-out;
+  }
+
+  .skip-link:focus {
+    top: 0.5rem;
+  }
+}
