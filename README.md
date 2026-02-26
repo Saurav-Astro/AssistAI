@@ -8,7 +8,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Firebase](https://img.shields.io/badge/Firebase-App_Hosting-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com/)
-[![Google Gemini](https://img.shields.io/badge/Powered_by-Gemini_AI-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
+[![Google Gemini](https://img.shields.io/badge/Powered_by-Gemini_2.5_Flash-4285F4?logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e.svg)](LICENSE)
 
 *Empowering independence through AI — for the visually impaired, hearing impaired, and beyond.*
@@ -65,7 +65,7 @@ Show an American Sign Language (ASL) hand sign to the camera and instantly recei
 
 ## ⚙️ How It Works
 
-AssistAI uses **[Firebase Genkit](https://firebase.google.com/docs/genkit)** to define structured AI flows that connect Next.js server actions to the **Google Gemini** large language model.
+AssistAI uses **[Firebase Genkit](https://firebase.google.com/docs/genkit)** to define structured AI flows that connect Next.js server actions to **Google Gemini 2.5 Flash** (`googleai/gemini-2.5-flash`).
 
 ```
 User Input (text / camera)
@@ -101,12 +101,13 @@ Zod schemas enforce strict input/output types at every step, ensuring reliabilit
 |---|---|
 | **Framework** | [Next.js 15](https://nextjs.org/) (App Router, React Server Components, Turbopack) |
 | **Language** | [TypeScript 5](https://www.typescriptlang.org/) |
-| **AI / LLM** | [Google Gemini](https://deepmind.google/technologies/gemini/) via [Firebase Genkit](https://firebase.google.com/docs/genkit) |
+| **AI / LLM** | [Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/) via [Firebase Genkit](https://firebase.google.com/docs/genkit) |
 | **Styling** | [Tailwind CSS 3](https://tailwindcss.com/) + [tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate) |
 | **UI Components** | [Radix UI](https://www.radix-ui.com/) + [shadcn/ui](https://ui.shadcn.com/) |
 | **Animations** | [Framer Motion](https://www.framer.com/motion/) |
 | **Forms** | [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) |
 | **Camera** | [react-webcam](https://github.com/mozmorris/react-webcam) |
+| **Icons** | [Lucide React](https://lucide.dev/) |
 | **Backend / Hosting** | [Firebase](https://firebase.google.com/) (App Hosting) |
 
 ---
@@ -176,7 +177,7 @@ AssistAI/
 │   │   │   ├── ai-chat-assistant.ts              # Chat AI flow (Genkit)
 │   │   │   ├── real-time-object-identification.ts # Vision AI flow (Genkit)
 │   │   │   └── sign-language-converter.ts         # ASL recognition flow (Genkit)
-│   │   ├── genkit.ts                              # Genkit + Gemini configuration
+│   │   ├── genkit.ts                              # Genkit + Gemini 2.5 Flash configuration
 │   │   └── dev.ts                                 # Genkit dev server entry
 │   ├── app/
 │   │   ├── chat/                                  # AI Chat page
@@ -191,13 +192,24 @@ AssistAI/
 │   │   ├── vision-interface.tsx                   # Vision UI component
 │   │   ├── sign-language-interface.tsx            # Sign language UI component
 │   │   ├── site-header.tsx                        # Top navigation header
-│   │   └── theme-toggle.tsx                       # Light/dark mode toggle
-│   ├── hooks/                                     # Custom React hooks
-│   ├── lib/                                       # Utility functions
-│   └── config/                                    # App configuration
+│   │   ├── main-nav.tsx                           # Desktop navigation menu
+│   │   ├── mobile-nav.tsx                         # Mobile navigation menu
+│   │   ├── theme-provider.tsx                     # next-themes provider wrapper
+│   │   ├── theme-toggle.tsx                       # Light/dark mode toggle
+│   │   └── icons.tsx                              # Shared icon components
+│   ├── hooks/
+│   │   ├── use-speak.ts                           # Web Speech API TTS hook
+│   │   ├── use-mobile.tsx                         # Mobile viewport detection hook
+│   │   └── use-toast.ts                           # Toast notification hook
+│   ├── lib/
+│   │   └── utils.ts                               # Tailwind merge + clsx utilities
+│   └── config/
+│       └── site.ts                                # Site metadata and nav config
 ├── apphosting.yaml                                # Firebase App Hosting config
+├── components.json                                # shadcn/ui configuration
 ├── next.config.ts                                 # Next.js configuration
 ├── tailwind.config.ts                             # Tailwind CSS configuration
+├── wrangler.jsonc                                 # Cloudflare Workers configuration
 └── tsconfig.json                                  # TypeScript configuration
 ```
 
@@ -256,7 +268,7 @@ AssistAI is built with accessibility as a core principle:
 ## 🗺️ Roadmap
 
 - [ ] Multi-language support for the chat assistant
-- [ ] Text-to-speech output for vision and chat responses
+- [x] Text-to-speech output for vision and chat responses (via Web Speech API)
 - [ ] Support for additional sign languages (BSL, ISL, etc.)
 - [ ] Offline mode with on-device AI models
 - [ ] User accounts and saved conversation history
